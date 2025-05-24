@@ -1,9 +1,12 @@
 🌟 GlowGenius
 Your Personalized Guide to Skincare & Cosmetic Product Discovery
 
-GlowGenius is a web-based platform designed to help users discover cosmetic and skincare products tailored to their unique needs. Whether you're dealing with specific skin concerns or just browsing by category, GlowGenius makes the process smooth, smart, and user-friendly — all without relying on machine learning or AI agents.
+GlowGenius is a clean, intuitive web-based platform that helps users discover personalized cosmetic and skincare products without the overwhelm. Designed with simplicity and purpose, it offers concern-based solutions (like acne, dryness, or pigmentation) and category-based browsing (serums, moisturizers, lipsticks, etc.), allowing users to explore products that match their needs and preferences.
+
+Unlike bloated e-commerce sites or one-size-fits-all beauty guides, GlowGenius focuses on curated, user-centric discovery — with smart filters, platform comparisons (Nykaa, Amazon, etc.), and trusted influencer picks on the roadmap. 
 
 ✨ Features
+
 🔹 Concern-Based Solutions
 Find curated product recommendations based on specific concerns like acne, dryness, dullness, pigmentation, etc.
 
