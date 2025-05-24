@@ -50,7 +50,7 @@ Skincare and beauty discovery is often overwhelming due to the sheer number of p
 ![home page](https://github.com/user-attachments/assets/a2a529b0-b3c5-4b8c-ab81-1294a0d6bb9d)
 ![Skincare or Cosmetics](https://github.com/user-attachments/assets/51dc747f-7edf-4c71-a0bc-5f11f854fab6)
 ![Concern or category Browsing](https://github.com/user-attachments/assets/8e9c837f-48b3-4563-b73e-969f66c40b67)
-[Concern Solution](https://github.com/user-attachments/assets/878d4c3f-4569-4988-945f-a41d880c6762)
+![Concern Solution](https://github.com/user-attachments/assets/878d4c3f-4569-4988-945f-a41d880c6762)
 ![Category Browsing](https://github.com/user-attachments/assets/72880354-747e-4eb8-b804-af9ecd453113)
 
  
