@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlowGenius - Cosmetics Concern-Based Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles specific to concern-based solution page */
+        .concern-based {
+            padding: 80px 0;
+            background-color: #fef6f7;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            font-size: 1rem;
+            color: #666;
+        }
+        
+        .breadcrumb i {
+            margin: 0 10px;
+            font-size: 0.8rem;
+        }
+        
+        .breadcrumb span {
+            color: #ff758c;
+            font-weight: 500;
+        }
+        
+        .search-container {
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        .search-bar {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 15px 20px 15px 50px;
+            border: 2px solid #eee;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .search-bar input:focus {
+            outline: none;
+            border-color: #ff758c;
+            box-shadow: 0 5px 20px rgba(255, 117, 140, 0.15);
+        }
+        
+        .search-bar i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ff758c;
+            font-size: 1.2rem;
+        }
+        
+        .search-example {
+            text-align: center;
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+        
+        .solution-card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .solution-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+        
+        .solution-list {
+            margin-bottom: 25px;
+        }
+        
+        .solution-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .solution-item i {
+            color: #ff758c;
+            margin-right: 15px;
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+        
+        .solution-item-content {
+            flex: 1;
+        }
+        
+        .solution-item-content h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .solution-item-content p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .solution-description {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .solution-description h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .solution-description p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .cta-button {
+            text-align: center;
+        }
+        
+        .cta-button .btn {
+            padding: 12px 25px;
+        }
+        
+        .cta-button .btn i {
+            margin-left: 8px;
+        }
+        
+        /* Product Recommendation Card Styles */
+        .product-cards-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 20px;
+            justify-content: flex-start;
+        }
+        .product-card-block {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            width: 22vw;
+            min-width: 180px;
+            max-width: 240px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 16px 12px 16px 12px;
+            transition: box-shadow 0.2s;
+            margin-bottom: 8px;
+        }
+        .product-card-block:hover {
+            box-shadow: 0 8px 32px rgba(117,140,255,0.18);
+        }
+        .product-title-block {
+            font-size: 1.01rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-align: left;
+            font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+            letter-spacing: -0.5px;
+            line-height: 1.25;
+        }
+        .product-meta-block {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 0.97rem;
+        }
+        .product-price-block {
+            font-weight: 700;
+            color: #ff758c;
+            font-size: 1.01rem;
+        }
+        .product-platform-block {
+            font-size: 0.91rem;
+            color: #aaa;
+            font-weight: 400;
+            text-transform: capitalize;
+        }
+        .product-reviews-block {
+            font-size: 1.05rem;
+            color: #ffb100;
+            margin-bottom: 8px;
+        }
+        .view-product-btn {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 7px 18px;
+            background: linear-gradient(135deg, #ff7eb3, #ff758c);
+            color: #fff;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.2s;
+            box-shadow: 0 2px 8px rgba(255,118,140,0.10);
+            font-size: 1rem;
+        }
+        .view-product-btn:hover {
+            background: linear-gradient(135deg, #758cff, #7eb3ff);
+        }
+        @media (max-width: 1100px) {
+            .product-card-block {
+                width: 45vw;
+                min-width: 160px;
+                max-width: 48vw;
+            }
+        }
+        @media (max-width: 700px) {
+            .product-card-block {
+                width: 100%;
+                min-width: 0;
+                padding: 12px 6px 12px 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Glow<span>Genius</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline">Log In</a>
+                <a href="#" class="btn btn-primary">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Concern-Based Solution Section -->
+    <section class="concern-based">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <i class="fas fa-chevron-right"></i>
+                <a href="feature-selection.html?domain=cosmetics">Cosmetics</a>
+                <i class="fas fa-chevron-right"></i>
+                <span>Concern-Based Solutions</span>
+            </div>
+            
+            <div class="section-header">
+                <h2>Tell us your <span class="cosmetics-header">Cosmetics</span> concern</h2>
+                <p>Describe what you're looking for and we'll suggest the perfect solution</p>
+            </div>
+            
+            <div class="search-container">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Enter your cosmetics concern here..." value="Matte red lipstick that lasts through meals">
+                </div>
+                <div class="search-example">
+                    <p>Examples: "Smudge-proof mascara for oily lids" or "Foundation for sensitive skin with SPF"</p>
+                </div>
+            </div>
+            
+            <div class="solution-card" style="display:none;">
+                <h3>Your Solution</h3>
+                <div class="solution-list">
+                    <div class="solution-item">
+                        <i class="fas fa-tint"></i>
+                        <div class="solution-item-content">
+                            <h4>Long-Wear Formula</h4>
+                            <p>Look for lipsticks labeled as "long-wear" or "24-hour" for maximum staying power through meals</p>
+                        </div>
+                    </div>
+                    <div class="solution-item">
+                        <i class="fas fa-fill-drip"></i>
+                        <div class="solution-item-content">
+                            <h4>Matte Finish</h4>
+                            <p>Matte formulations have less oil content and tend to last longer than creamy or glossy finishes</p>
+                        </div>
+                    </div>
+                    <div class="solution-item">
+                        <i class="fas fa-magic"></i>
+                        <div class="solution-item-content">
+                            <h4>Lip Liner Base</h4>
+                            <p>Apply a matching red lip liner all over lips before lipstick to create a base that extends wear time</p>
+                        </div>
+                    </div>
+                    <div class="solution-item">
+                        <i class="fas fa-paint-brush"></i>
+                        <div class="solution-item-content">
+                            <h4>Liquid Lipstick</h4>
+                            <p>Liquid-to-matte formulas typically offer the most transfer-resistant and long-lasting results</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="solution-description">
+                    <h4>How to make it last:</h4>
+                    <p>For maximum longevity, exfoliate lips first, apply a thin layer of translucent powder, then lip liner, followed by two thin layers of lipstick (blotting in between). Set with a light dusting of translucent powder for extra staying power.</p>
+                </div>
+                
+                <div class="cta-button" style="display:none;">
+                    <button id="show-products-btn" class="btn btn-primary">Show Products Recommended <i class="fas fa-arrow-right"></i></button>
+                </div>
+                <div id="product-results" style="display:none; margin-top: 30px;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Glow<span>Genius</span></h2>
+                    <p>Your Personal Beauty Intelligence</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-column">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Press</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-column">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Guides</a></li>
+                            <li><a href="#">Support</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-column">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="#">Privacy</a></li>
+                            <li><a href="#">Terms</a></li>
+                            <li><a href="#">Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 GlowGenius. All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const input = document.querySelector('.search-bar input');
+        const solutionCard = document.querySelector('.solution-card');
+        const solutionList = solutionCard.querySelector('.solution-list');
+        const solutionDesc = solutionCard.querySelector('.solution-description');
+        const ctaButton = solutionCard.querySelector('.cta-button');
+        const showProductsBtn = document.getElementById('show-products-btn');
+        const productResults = document.getElementById('product-results');
+
+        // Clear default value and hide solution card
+        input.value = '';
+        solutionCard.style.display = 'none';
+
+        let lastFeatures = [];
+
+        input.addEventListener('keydown', async function(e) {
+            if (e.key === 'Enter' && input.value.trim()) {
+                solutionCard.style.display = '';
+                solutionList.innerHTML = '<p>Loading...</p>';
+                solutionDesc.style.display = 'none';
+                ctaButton.style.display = 'none';
+                productResults.style.display = 'none';
+                productResults.innerHTML = '';
+
+                try {
+                    const res = await fetch('http://localhost:3001/api/concern-solution', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ concern: input.value, category: 'cosmetics' })
+                    });
+                    const data = await res.json();
+
+                    // Render solutions
+                    solutionList.innerHTML = '';
+                    lastFeatures = [];
+                    if (data.solutions && data.solutions.length > 0) {
+                        data.solutions.forEach(sol => {
+                            const div = document.createElement('div');
+                            div.className = 'solution-item';
+                            div.innerHTML = `
+                                <i class="fas fa-star"></i>
+                                <div class="solution-item-content">
+                                    <h4>${sol.name}</h4>
+                                    <p>${sol.description}</p>
+                                </div>
+                            `;
+                            solutionList.appendChild(div);
+                            lastFeatures.push({ name: sol.name, description: sol.description });
+                        });
+                        ctaButton.style.display = '';
+                    } else {
+                        solutionList.innerHTML = '<p>No solutions found. Try rephrasing your concern.</p>';
+                        ctaButton.style.display = 'none';
+                    }
+
+                    // Show generic advice
+                    solutionDesc.style.display = '';
+                    solutionDesc.innerHTML = `
+                        <h4>How to solve:</h4>
+                        <p>For best results, use the above attributes/techniques as part of your makeup routine. Consult a beauty expert for personalized advice.</p>
+                    `;
+                } catch (err) {
+                    solutionList.innerHTML = '<p>There was an error fetching solutions. Please try again later.</p>';
+                    ctaButton.style.display = 'none';
+                }
+            }
+        });
+
+        showProductsBtn.addEventListener('click', async function() {
+            if (!lastFeatures.length) return;
+            productResults.style.display = 'block';
+            productResults.innerHTML = '<p>Loading product recommendations...</p>';
+            try {
+                const res = await fetch('http://localhost:3001/api/product-search', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ features: lastFeatures })
+                });
+                const data = await res.json();
+                // New flow: store products in localStorage and redirect to recommendations page
+                if ((data.products && data.products.length > 0) || (data.items && data.items.length > 0)) {
+                    const products = data.products && data.products.length > 0 ? data.products : data.items;
+                    localStorage.setItem('glowgenius_recommendations', JSON.stringify(products));
+                    window.location.href = 'product-recommendations.html';
+                    return;
+                }
+                // fallback: show inline if no products
+                if (data.products && data.products.length > 0) {
+                    function renderStars(rating) {
+                        if (!rating) return '';
+                        const rounded = Math.round(parseFloat(rating));
+                        let stars = '';
+                        for (let i = 1; i <= 5; i++) {
+                            stars += i <= rounded ? '★' : '☆';
+                        }
+                        return `<span class="product-reviews-block">${stars}${rating ? ` <span style='color:#888;font-size:0.98rem;'>${parseFloat(rating).toFixed(1)}/5</span>` : ''}</span>`;
+                    }
+                    function getPlatform(prod) {
+                        if (prod.vendor || prod.platform || prod.retailer) {
+                            return prod.vendor || prod.platform || prod.retailer;
+                        }
+                        if (prod.link) {
+                            try {
+                                const url = new URL(prod.link);
+                                if (url.hostname.includes('sephora')) return 'Sephora';
+                                if (url.hostname.includes('amazon')) return 'Amazon';
+                                if (url.hostname.includes('ulta')) return 'Ulta Beauty';
+                                if (url.hostname.includes('walmart')) return 'Walmart';
+                                if (url.hostname.includes('target')) return 'Target';
+                                return url.hostname.replace('www.', '').split('.')[0];
+                            } catch (e) { return ''; }
+                        }
+                        return '';
+                    }
+                    productResults.innerHTML = '<h4>Product Recommendations</h4><div class="product-cards-grid"></div>';
+                    const grid = productResults.querySelector('.product-cards-grid');
+                    data.products.forEach(prod => {
+                        const div = document.createElement('div');
+                        div.className = 'product-card-block';
+                        div.innerHTML = `
+                            <h5 class="product-title-block">${prod.title || prod.name}</h5>
+                            <div class="product-meta-block">
+                                <span class="product-price-block">${prod.price ? (prod.price.startsWith('$') ? prod.price : '$' + prod.price) : ''}</span>
+                                <span class="product-platform-block">${getPlatform(prod)}</span>
+                            </div>
+                            ${renderStars(prod.rating || prod.reviews_rating || prod.stars)}
+                            ${prod.link ? `<a href="${prod.link}" target="_blank" class="view-product-btn">Shop Now</a>` : ''}
+                        `;
+                        grid.appendChild(div);
+                    });
+                } else if (data.items && data.items.length > 0) {
+                    function renderStars(rating) {
+                        if (!rating) return '';
+                        const rounded = Math.round(parseFloat(rating));
+                        let stars = '';
+                        for (let i = 1; i <= 5; i++) {
+                            stars += i <= rounded ? '★' : '☆';
+                        }
+                        return `<span class="product-reviews-block">${stars}${rating ? ` <span style='color:#888;font-size:0.98rem;'>${parseFloat(rating).toFixed(1)}/5</span>` : ''}</span>`;
+                    }
+                    function getPlatform(prod) {
+                        if (prod.vendor || prod.platform || prod.retailer) {
+                            return prod.vendor || prod.platform || prod.retailer;
+                        }
+                        if (prod.link) {
+                            try {
+                                const url = new URL(prod.link);
+                                if (url.hostname.includes('sephora')) return 'Sephora';
+                                if (url.hostname.includes('amazon')) return 'Amazon';
+                                if (url.hostname.includes('ulta')) return 'Ulta Beauty';
+                                if (url.hostname.includes('walmart')) return 'Walmart';
+                                if (url.hostname.includes('target')) return 'Target';
+                                return url.hostname.replace('www.', '').split('.')[0];
+                            } catch (e) { return ''; }
+                        }
+                        return '';
+                    }
+                    productResults.innerHTML = '<h4>Product Recommendations</h4><div class="product-cards-grid"></div>';
+                    const grid = productResults.querySelector('.product-cards-grid');
+                    data.items.forEach(prod => {
+                        const div = document.createElement('div');
+                        div.className = 'product-card-block';
+                        div.innerHTML = `
+                            <h5 class="product-title-block">${prod.title || prod.name}</h5>
+                            <div class="product-meta-block">
+                                <span class="product-price-block">${prod.price ? (prod.price.startsWith('$') ? prod.price : '$' + prod.price) : ''}</span>
+                                <span class="product-platform-block">${getPlatform(prod)}</span>
+                            </div>
+                            ${renderStars(prod.rating || prod.reviews_rating || prod.stars)}
+                            ${prod.link ? `<a href="${prod.link}" target="_blank" class="view-product-btn">Shop Now</a>` : ''}
+                        `;
+                        grid.appendChild(div);
+                    });
+                } else {
+                    productResults.innerHTML = '<p>No products found for these features.</p>';
+                }
+            } catch (err) {
+                productResults.innerHTML = '<p>There was an error fetching product recommendations.</p>';
+            }
+        });
+    });
+    </script>
+</body>
+</html>

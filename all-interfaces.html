@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlowGenius - All Interface Prototypes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .prototype-section {
+            padding: 50px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .prototype-section:last-child {
+            border-bottom: none;
+        }
+        
+        .prototype-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+        }
+        
+        .prototype-header h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .prototype-header p {
+            color: #666;
+        }
+        
+        .prototype-frame {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .prototype-frame iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+        
+        .prototype-description {
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        
+        .prototype-description h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .prototype-description p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .prototype-description ul {
+            padding-left: 20px;
+        }
+        
+        .prototype-description li {
+            margin-bottom: 5px;
+            color: #666;
+        }
+        
+        .back-to-home {
+            display: block;
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .back-to-home .btn {
+            padding: 12px 25px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Glow<span>Genius</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline">Log In</a>
+                <a href="#" class="btn btn-primary">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="prototype-header">
+            <h2>GlowGenius Interface Prototypes</h2>
+            <p>View all the prototype interfaces for the feature selection screens</p>
+        </div>
+        
+        <div class="back-to-home">
+            <a href="index.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        </div>
+        
+        <!-- Cosmetics Feature Selection -->
+        <section class="prototype-section">
+            <div class="prototype-description">
+                <h3>Cosmetics Feature Selection</h3>
+                <p>This interface appears after a user selects "Choose Cosmetics" from the domain selection screen. It presents two options for exploring cosmetics products:</p>
+                <ul>
+                    <li><strong>Concern-Based Solutions:</strong> Users can describe specific beauty concerns to get targeted product recommendations.</li>
+                    <li><strong>Category-Based Browsing:</strong> Users can browse through organized product categories to compare options.</li>
+                </ul>
+                <p>The interface uses pink/rose color accents to indicate the Cosmetics domain.</p>
+            </div>
+            <div class="prototype-frame">
+                <iframe src="feature-selection.html?domain=cosmetics" title="Cosmetics Feature Selection"></iframe>
+            </div>
+        </section>
+        
+        <!-- Cosmetics Concern-Based Solutions -->
+        <section class="prototype-section">
+            <div class="prototype-description">
+                <h3>Cosmetics Concern-Based Solutions</h3>
+                <p>This interface appears after a user selects the "Concern-Based Solutions" option from the Cosmetics feature selection screen. It allows users to:</p>
+                <ul>
+                    <li><strong>Search for Solutions:</strong> Enter a specific cosmetics concern in plain language (e.g., "Matte red lipstick that lasts through meals")</li>
+                    <li><strong>View Solution Card:</strong> See a dynamically generated solution with key makeup attributes and application tips</li>
+                    <li><strong>Find Products:</strong> Click the CTA button to view recommended products that match the solution</li>
+                </ul>
+                <p>The interface maintains the cosmetics domain's pink/rose color scheme and uses FontAwesome icons to enhance the solution presentation.</p>
+            </div>
+            <div class="prototype-frame">
+                <iframe src="concern-based-cosmetics.html"></iframe>
+            </div>
+        </section>
+        
+        <!-- Skincare Concern-Based Solutions -->
+        <section class="prototype-section">
+            <div class="prototype-description">
+                <h3>Skincare Concern-Based Solutions</h3>
+                <p>This interface appears after a user selects the "Concern-Based Solutions" option from the Skincare feature selection screen. It allows users to:</p>
+                <ul>
+                    <li><strong>Search for Solutions:</strong> Enter a specific skincare concern in plain language (e.g., "Blackheads on my nose")</li>
+                    <li><strong>View Solution Card:</strong> See a dynamically generated solution with key ingredients and application methods</li>
+                    <li><strong>Find Products:</strong> Click the CTA button to view recommended products that match the solution</li>
+                </ul>
+                <p>The interface maintains the skincare domain's blue color scheme and uses FontAwesome icons to enhance the solution presentation.</p>
+            </div>
+            <div class="prototype-frame">
+                <iframe src="concern-based-skincare.html"></iframe>
+            </div>
+        </section>
+        
+        <!-- Skincare Feature Selection -->
+        <section class="prototype-section">
+            <div class="prototype-description">
+                <h3>Skincare Feature Selection</h3>
+                <p>This interface appears after a user selects "Choose Skincare" from the domain selection screen. It presents two options for exploring skincare products:</p>
+                <ul>
+                    <li><strong>Concern-Based Solutions:</strong> Users can describe specific skin concerns to get targeted product recommendations.</li>
+                    <li><strong>Category-Based Browsing:</strong> Users can browse through organized product categories to compare options.</li>
+                </ul>
+                <p>The interface uses blue color accents to indicate the Skincare domain.</p>
+            </div>
+            <div class="prototype-frame">
+                <iframe src="feature-selection.html?domain=skincare" title="Skincare Feature Selection"></iframe>
+            </div>
+        </section>
+        
+        <!-- Help Modal -->
+        <section class="prototype-section">
+            <div class="prototype-description">
+                <h3>Help Modal</h3>
+                <p>This modal appears when a user clicks on the "How to choose the right option for you?" link in either feature selection screen. It provides:</p>
+                <ul>
+                    <li>A comparison table highlighting the differences between the two feature modes</li>
+                    <li>Recommendations on when to use each mode</li>
+                    <li>Clear explanations of the benefits of each approach</li>
+                </ul>
+                <p>The modal adapts its styling based on the domain (Cosmetics or Skincare) from which it was accessed.</p>
+            </div>
+            <div class="prototype-frame">
+                <iframe src="help-modal.html" title="Help Modal"></iframe>
+            </div>
+        </section>
+        
+        <div class="back-to-home">
+            <a href="index.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Glow<span>Genius</span></h2>
+                    <p>Your Personal Beauty Intelligence</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-column">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Press</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-column">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Guides</a></li>
+                            <li><a href="#">Support</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-column">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="#">Privacy</a></li>
+                            <li><a href="#">Terms</a></li>
+                            <li><a href="#">Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter for beauty tips and product updates</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 GlowGenius. All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

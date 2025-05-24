@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlowGenius - Product Catalog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Product Catalog Specific Styles */
+        .catalog-header {
+            background-color: #fef6f7;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .catalog-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .catalog-description {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 20px;
+        }
+        
+        .view-toggle {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            gap: 15px;
+        }
+        
+        .view-toggle button {
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: 2px solid #ff758c;
+            background: transparent;
+            color: #ff758c;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .view-toggle button.active {
+            background: linear-gradient(135deg, #ff7eb3, #ff758c);
+            color: white;
+        }
+        
+        .catalog-container {
+            display: flex;
+            gap: 30px;
+            padding: 50px 0;
+        }
+        
+        .filters-sidebar {
+            width: 280px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 25px;
+            height: fit-content;
+        }
+        
+        .filter-section {
+            margin-bottom: 25px;
+        }
+        
+        .filter-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .filter-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .filter-option input {
+            accent-color: #ff758c;
+        }
+        
+        .price-range {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .price-range input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .products-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(135deg, #ff7eb3, #ff758c);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .product-details {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .product-retailer {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .product-retailer i {
+            color: #ff758c;
+        }
+        
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ff758c;
+            margin-bottom: 15px;
+        }
+        
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .product-rating i {
+            color: #ffb100;
+        }
+        
+        .product-rating span {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .product-actions button {
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: none;
+            background-color: #f5f5f5;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .product-actions button:hover {
+            background-color: #eaeaea;
+        }
+        
+        .product-actions .add-to-cart {
+            background: linear-gradient(135deg, #ff7eb3, #ff758c);
+            color: white;
+        }
+        
+        .product-actions .add-to-cart:hover {
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .catalog-container {
+                flex-direction: column;
+            }
+            
+            .filters-sidebar {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .view-toggle {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Glow<span>Genius</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline">Log In</a>
+                <a href="#" class="btn btn-primary">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Catalog Header -->
+    <section class="catalog-header">
+        <div class="container">
+            <h1 class="catalog-title">Product Catalog</h1>
+            <p class="catalog-description">Browse our curated selection of beauty products from top retailers. Compare prices, read reviews, and find your perfect match.</p>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> / 
+                <a href="feature-selection.html" id="feature-link">Features</a> / 
+                <span id="catalog-type">Product Catalog</span>
+            </div>
+            <script>
+                // Update breadcrumb with domain parameter
+                const domainParam = new URLSearchParams(window.location.search).get('domain');
+                if (domainParam) {
+                    document.getElementById('feature-link').href = `feature-selection.html?domain=${domainParam}`;
+                    if (domainParam === 'skincare') {
+                        document.getElementById('catalog-type').textContent = 'Skincare Products';
+                    } else if (domainParam === 'cosmetics') {
+                        document.getElementById('catalog-type').textContent = 'Cosmetics Products';
+                    }
+                }
+            </script>
+        </div>
+    </section>
+    
+    <!-- View Toggle -->
+    <div class="container">
+        <div class="view-toggle">
+            <button class="active" id="price-view"><i class="fas fa-tag"></i> By Price</button>
+            <button id="trend-view"><i class="fas fa-chart-line"></i> By Trend</button>
+        </div>
+    </div>
+    
+    <!-- Catalog Content -->
+    <div class="container">
+        <div class="catalog-container">
+            <!-- Filters Sidebar -->
+            <div class="filters-sidebar">
+                <h2>Filters</h2>
+                <div class="filter-section">
+                    <h3>Categories <i class="fas fa-chevron-down"></i></h3>
+                    <div class="filter-options">
+                        <div class="filter-option">
+                            <input type="checkbox" id="category-1" checked>
+                            <label for="category-1">Foundations</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="category-2">
+                            <label for="category-2">Lipsticks</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="category-3">
+                            <label for="category-3">Eyeshadows</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="category-4">
+                            <label for="category-4">Mascaras</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="category-5">
+                            <label for="category-5">Blushes</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h3>Price Range <i class="fas fa-chevron-down"></i></h3>
+                    <div class="filter-options">
+                        <div class="price-range">
+                            <input type="number" placeholder="Min" min="0">
+                            <span>to</span>
+                            <input type="number" placeholder="Max" min="0">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h3>Retailers <i class="fas fa-chevron-down"></i></h3>
+                    <div class="filter-options">
+                        <div class="filter-option">
+                            <input type="checkbox" id="retailer-1" checked>
+                            <label for="retailer-1">Sephora</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="retailer-2" checked>
+                            <label for="retailer-2">Ulta Beauty</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="retailer-3">
+                            <label for="retailer-3">Amazon</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="retailer-4">
+                            <label for="retailer-4">Target</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="retailer-5">
+                            <label for="retailer-5">Walmart</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h3>Ratings <i class="fas fa-chevron-down"></i></h3>
+                    <div class="filter-options">
+                        <div class="filter-option">
+                            <input type="checkbox" id="rating-5">
+                            <label for="rating-5">5 Stars</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="rating-4" checked>
+                            <label for="rating-4">4+ Stars</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="rating-3">
+                            <label for="rating-3">3+ Stars</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" style="width: 100%;">Apply Filters</button>
+            </div>
+            
+            <!-- Products Grid -->
+            <div class="products-grid">
+                <!-- Product Card 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Foundation Product">
+                        <span class="product-badge">Best Seller</span>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Luminous Silk Foundation</h3>
+                        <div class="product-retailer">
+                            <i class="fas fa-store"></i>
+                            <span>Sephora</span>
+                        </div>
+                        <div class="product-price">$42.00</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(128)</span>
+                        </div>
+                        <div class="product-actions">
+                            <button><i class="fas fa-heart"></i> Save</button>
+                            <button><i class="fas fa-exchange-alt"></i> Compare</button>
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Add</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1631730359585-38a4935cbec4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Foundation Product">
+                        <span class="product-badge">New</span>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Hydrating Foundation</h3>
+                        <div class="product-retailer">
+                            <i class="fas fa-store"></i>
+                            <span>Ulta Beauty</span>
+                        </div>
+                        <div class="product-price">$38.50</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(94)</span>
+                        </div>
+                        <div class="product-actions">
+                            <button><i class="fas fa-heart"></i> Save</button>
+                            <button><i class="fas fa-exchange-alt"></i> Compare</button>
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Add</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1599733589046-9b8308b5b50d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Foundation Product">
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Matte Perfection Foundation</h3>
+                        <div class="product-retailer">
+                            <i class="fas fa-store"></i>
+                            <span>Sephora</span>
+                        </div>
+                        <div class="product-price">$36.00</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(212)</span>
+                        </div>
+                        <div class="product-actions">
+                            <button><i class="fas fa-heart"></i> Save</button>
+                            <button><i class="fas fa-exchange-alt"></i> Compare</button>
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Add</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1625093742435-6fa192b6a819?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Foundation Product">
+                        <span class="product-badge">Sale</span>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Natural Finish Foundation</h3>
+                        <div class="product-retailer">
+                            <i class="fas fa-store"></i>
+                            <span>Ulta Beauty</span>
+                        </div>
+                        <div class="product-price">$29.99</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <i class="far fa-star"></i>
+                            <span>(76)</span>
+                        </div>
+                        <div class="product-actions">
+                            <button><i class="fas fa-heart"></i> Save</button>
+                            <button><i class="fas fa-exchange-alt"></i> Compare</button>
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Add</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Foundation Product">
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Radiant Glow Foundation</h3>
+                        <div class="product-retailer">
+                            <i class="fas fa-store"></i>
+                            <span>Sephora</span>
+                        </div>
+                        <div class="product-price">$48.00</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(143)</span>
+                        </div>
+                        <div class="product-actions">
+                            <button><i class="fas fa-heart"></i> Save</button>
+                            <button><i class="fas fa-exchange-alt"></i> Compare</button>
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Add</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Foundation Product">
+                        <span class="product-badge">Trending</span>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Long-Wear Foundation</h3>
+                        <div class="product-retailer">
+                            <i class="fas fa-store"></i>
+                            <span>Ulta Beauty</span>
+                        </div>
+                        <div class="product-price">$45.00</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(187)</span>
+                        </div>
+                        <div class="product-actions">
+                            <button><i class="fas fa-heart"></i> Save</button>
+                            <button><i class="fas fa-exchange-alt"></i> Compare</button>
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Glow<span>Genius</span></h2>
+                    <p>Your personal beauty intelligence</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Features</h3>
+                    <ul>
+                        <li><a href="#">AI Recommendations</a></li>
+                        <li><a href="#">Product Catalog</a></li>
+                        <li><a href="#">Skincare Routine</a></li>
+                        <li><a href="#">Beauty Tips</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter for the latest beauty tips and product recommendations.</p>
+                    <form>
+                        <input type="email" placeholder="Your email address">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 GlowGenius. All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get domain type from URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const domain = urlParams.get('domain');
+            
+            // Update UI based on domain
+            if (domain === 'skincare') {
+                // Update page title and styling for skincare
+                document.querySelector('.catalog-title').textContent = 'Skincare Products';
+                document.querySelector('.catalog-description').textContent = 'Browse our curated selection of skincare products from top retailers. Compare ingredients, read reviews, and find your perfect match.';
+                
+                // Update categories for skincare
+                const categoryLabels = document.querySelectorAll('.filter-options label');
+                if (categoryLabels.length >= 5) {
+                    categoryLabels[0].textContent = 'Cleansers';
+                    categoryLabels[1].textContent = 'Moisturizers';
+                    categoryLabels[2].textContent = 'Serums';
+                    categoryLabels[3].textContent = 'Masks';
+                    categoryLabels[4].textContent = 'Sunscreens';
+                }
+            }
+            
+            // View toggle functionality
+            const priceViewBtn = document.getElementById('price-view');
+            const trendViewBtn = document.getElementById('trend-view');
+            
+            priceViewBtn.addEventListener('click', function() {
+                priceViewBtn.classList.add('active');
+                trendViewBtn.classList.remove('active');
+                // Here you would implement the logic to sort products by price
+                // For demonstration, we'll just show an alert
+                alert('Products sorted by price');
+            });
+            
+            trendViewBtn.addEventListener('click', function() {
+                trendViewBtn.classList.add('active');
+                priceViewBtn.classList.remove('active');
+                // Here you would implement the logic to sort products by trend
+                alert('Products sorted by trend');
+            });
+            
+            // Filter section toggle
+            const filterHeaders = document.querySelectorAll('.filter-section h3');
+            
+            filterHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const filterOptions = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    if (filterOptions.style.display === 'none') {
+                        filterOptions.style.display = 'flex';
+                        icon.className = 'fas fa-chevron-down';
+                    } else {
+                        filterOptions.style.display = 'none';
+                        icon.className = 'fas fa-chevron-right';
+                    }
+                });
+            });
+            
+            // Mobile menu toggle functionality (for responsive design)
+            const mobileMenuToggle = document.createElement('div');
+            mobileMenuToggle.className = 'mobile-menu-toggle';
+            mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            
+            const header = document.querySelector('header .container');
+            const nav = document.querySelector('nav');
+            
+            // Only add mobile menu functionality if we're on a small screen
+            if (window.innerWidth <= 768) {
+                header.insertBefore(mobileMenuToggle, nav);
+                nav.style.display = 'none';
+                
+                mobileMenuToggle.addEventListener('click', function() {
+                    if (nav.style.display === 'none') {
+                        nav.style.display = 'block';
+                        mobileMenuToggle.innerHTML = '<i class="fas fa-times"></i>';
+                    } else {
+                        nav.style.display = 'none';
+                        mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                });
+            }
+            
+            // Product card hover effects
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlowGenius - Product Recommendations</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .recommend-header {
+            background-color: #fef6f7;
+            padding: 40px 0 20px 0;
+            text-align: center;
+        }
+        .recommend-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .recommend-description {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 20px;
+        }
+        .recommend-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 50px 20px;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .product-details {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .product-retailer {
+            font-size: 0.95rem;
+            color: #888;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ff758c;
+            margin-bottom: 10px;
+        }
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+        .product-rating i {
+            color: #ffb100;
+        }
+        .product-rating span {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .view-product-btn {
+            display: inline-block;
+            margin-top: auto;
+            padding: 8px 18px;
+            background: linear-gradient(135deg, #ff7eb3, #ff758c);
+            color: #fff;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.2s;
+            font-size: 1rem;
+            text-align: center;
+        }
+        .view-product-btn:hover {
+            background: linear-gradient(135deg, #758cff, #7eb3ff);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Glow<span>Genius</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline">Log In</a>
+                <a href="#" class="btn btn-primary">Sign Up</a>
+            </div>
+        </div>
+    </header>
+    <section class="recommend-header">
+        <div class="container">
+            <h1 class="recommend-title">Product Recommendations</h1>
+            <p class="recommend-description">Here are the best products we found for your needs. Compare prices, read reviews, and shop from your favorite retailers.</p>
+        </div>
+    </section>
+    <div class="recommend-container">
+        <div class="products-grid" id="recommend-products-grid">
+            <!-- Product cards will be inserted here by JS -->
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Glow<span>Genius</span></h2>
+                    <p>Your Personal Beauty Intelligence</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-column">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Press</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-column">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Guides</a></li>
+                            <li><a href="#">Support</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-column">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="#">Privacy</a></li>
+                            <li><a href="#">Terms</a></li>
+                            <li><a href="#">Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 GlowGenius. All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+    // Example: dynamically insert product cards (replace with real data/fetch in production)
+    function renderStars(rating) {
+        if (!rating) return '';
+        const rounded = Math.round(parseFloat(rating));
+        let stars = '';
+        for (let i = 1; i <= 5; i++) {
+            stars += i <= rounded ? '★' : '☆';
+        }
+        return `<span class="product-rating">${stars}${rating ? ` <span style='color:#888;font-size:0.98rem;'>${parseFloat(rating).toFixed(1)}/5</span>` : ''}</span>`;
+    }
+    function getPlatform(prod) {
+        if (prod.vendor || prod.platform || prod.retailer) {
+            return prod.vendor || prod.platform || prod.retailer;
+        }
+        if (prod.link) {
+            try {
+                const url = new URL(prod.link);
+                if (url.hostname.includes('sephora')) return 'Sephora';
+                if (url.hostname.includes('amazon')) return 'Amazon';
+                if (url.hostname.includes('ulta')) return 'Ulta Beauty';
+                if (url.hostname.includes('walmart')) return 'Walmart';
+                if (url.hostname.includes('target')) return 'Target';
+                return url.hostname.replace('www.', '').split('.')[0];
+            } catch (e) { return ''; }
+        }
+        return '';
+    }
+    // Example data (replace with real fetch)
+    const products = [];
+    // In production, fetch products and then call renderProducts(products)
+    function renderProducts(products) {
+        const grid = document.getElementById('recommend-products-grid');
+        grid.innerHTML = '';
+        products.forEach(prod => {
+            const div = document.createElement('div');
+            div.className = 'product-card';
+            div.innerHTML = `
+                <div class="product-details">
+                    <h3 class="product-title">${prod.title || prod.name}</h3>
+                    <div class="product-retailer">
+                        <i class="fas fa-store"></i>
+                        <span>${getPlatform(prod)}</span>
+                    </div>
+                    <div class="product-price">${prod.price ? (prod.price.startsWith('$') ? prod.price : '$' + prod.price) : ''}</div>
+                    ${renderStars(prod.rating || prod.reviews_rating || prod.stars)}
+                    ${prod.link ? `<a href="${prod.link}" target="_blank" class="view-product-btn">Shop Now</a>` : ''}
+                </div>
+            `;
+            grid.appendChild(div);
+        });
+    }
+    // Example usage: renderProducts(products);
+    // On page load, load recommendations from localStorage if present
+    document.addEventListener('DOMContentLoaded', function() {
+        const stored = localStorage.getItem('glowgenius_recommendations');
+        if (stored) {
+            try {
+                const products = JSON.parse(stored);
+                renderProducts(products);
+            } catch (e) {
+                document.getElementById('recommend-products-grid').innerHTML = '<p>Could not load product recommendations.</p>';
+            }
+        } else {
+            document.getElementById('recommend-products-grid').innerHTML = '<p>No product recommendations found. Please start from a concern-based search.</p>';
+        }
+    });
+    </script>
+</body>
+</html> 
