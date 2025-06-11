@@ -1,11 +1,11 @@
-##🌟 GlowGenius
+## GlowGenius 🌟 
 Your Personalized Guide to Skincare & Cosmetic Product Discovery
 
 GlowGenius is a clean, intuitive web-based platform that helps users discover personalized cosmetic and skincare products without the overwhelm. Designed with simplicity and purpose, it offers concern-based solutions (like acne, dryness, or pigmentation) and category-based browsing (serums, moisturizers, lipsticks, etc.), allowing users to explore products that match their needs and preferences.
 
 Unlike bloated e-commerce sites or one-size-fits-all beauty guides, GlowGenius focuses on curated, user-centric discovery — with smart filters, platform comparisons (Nykaa, Amazon, etc.), and trusted influencer picks on the roadmap. 
 
-##✨ Features
+## Features ✨ 
 
 🔹 Concern-Based Solutions
 Find curated product recommendations based on specific concerns like acne, dryness, dullness, pigmentation, etc.
@@ -29,7 +29,7 @@ Backend (Planned): Node.js or Django (depending on scope)
 
 Data Handling: Static JSON / APIs (planned)
 
-🚀 Roadmap
+## Roadmap 🚀
  Frontend design and structure
 
  Concern-based product routing
@@ -42,10 +42,10 @@ Data Handling: Static JSON / APIs (planned)
 
  Deploy full-stack version!
 
-💡 Inspiration
+## Inspiration 💡
 Skincare and beauty discovery is often overwhelming due to the sheer number of products and scattered information. GlowGenius was born from the need for a clean, structured, and intuitive way to explore products based on real user needs rather than generic listings.
 
-📸 Preview
+## Preview 📸
 
 ![home page](https://github.com/user-attachments/assets/a2a529b0-b3c5-4b8c-ab81-1294a0d6bb9d)
 ![Skincare or Cosmetics](https://github.com/user-attachments/assets/51dc747f-7edf-4c71-a0bc-5f11f854fab6)
